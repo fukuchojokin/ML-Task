@@ -1,0 +1,16 @@
+[
+    {
+        "buyer": "SOME SAMPLE NAME, NEWROAD, KATHMANDU NEPAL",
+        "container": "CAIU9669025",
+        "hbl_num": "NB20A1629",
+        "hbl_scac": "HNLT",
+        "mbl_num": "NBMZ12536",
+        "mbl_scac": "CMDU",
+        "pod": "LOS ANGELES,CA,US",
+        "pol": "NINGBO,CN",
+        "seller": "Some Random Company PVT. LTD. Baneshwor, Kathmandu Nepal",
+        "type_of_movement": "FCL",
+        "vessel_name": "CMA CGM FLORIDA",
+        "voyage_num": "OGV6U"
+    }
+]
