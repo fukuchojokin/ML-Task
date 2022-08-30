@@ -14,7 +14,7 @@ images[0].save("processImages/BOL.jpg", "JPEG")
 for jpg_file in glob.glob(r'processImages/BOL.jpg'):
     remove_lines(jpg_file, r'processImages/')
 
-## PREPROCESSING
+# PREPROCESSING
 image = cv2.imread(r"processImages/BOL.jpg")
 base_image = image.copy()
 # GRAY
@@ -64,7 +64,7 @@ for c in cnts:
         ocr = pytesseract.image_to_string(roi)
         ocr = "".join([s for s in ocr.strip().splitlines(True) if s.strip()])
         texts.append(ocr)
-        
+
 cv2.imwrite("processImages/BOL_Bbox.png", image)
 
 output = {}
