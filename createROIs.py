@@ -35,7 +35,7 @@ def createROIs():
     cnts = cv2.findContours(dilate, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     cnts = cnts[0] if len(cnts) == 2 else cnts[1]
     cnts = sorted(cnts, key=lambda z: cv2.boundingRect(z)[0])
-    i = 0
+    # i = 0
     for c in cnts:
         x, y, w, h = cv2.boundingRect(c)
         if h > 100:
@@ -44,5 +44,8 @@ def createROIs():
             ocr = pytesseract.image_to_string(roi)
             ocr = "".join([s for s in ocr.strip().splitlines(True) if s.strip()])
             texts.append(ocr)
+            # with open(f"processText/roi{i}", "w") as f:
+            #     f.write(ocr)
+            #     i += 1
     cv2.imwrite("processImages/BOL_Bbox.png", image)
     return texts

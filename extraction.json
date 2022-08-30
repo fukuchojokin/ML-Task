@@ -2,6 +2,8 @@
     {
         "buyer": "SOME SAMPLE NAME, NEWROAD, KATHMANDU NEPAL",
         "container": "CAIU9669025",
+        "eta": "2020/12/15",
+        "etd": "2020/12/2",
         "hbl_num": "NB20A1629",
         "hbl_scac": "HNLT",
         "mbl_num": "NBMZ12536",
