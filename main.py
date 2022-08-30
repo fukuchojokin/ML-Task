@@ -1,7 +1,6 @@
 import json
 import re
 from createROIs import createROIs
-import collections
 
 regex = {
     "buyer": re.compile(r"Buyer.*\n([\s\S]+)"),
@@ -29,10 +28,10 @@ for text in texts:
         if len(match) > 0:
             output[key] = str(match.pop()).replace("\n", " ")
             output[key] = re.sub("[^A-Za-z0-9.,\n ]", "", output[key])
-            if re.search(r"LCL.*", output[key]):
-                output[key] = re.sub("LCL.*", "LCL", output[key])
-            elif re.search(r"FCL.*", output[key]):
-                output[key] = re.sub("FCL.*", "FCL", output[key])
+            if re.search(r"(LCL *[A-Za-z]{2})", output[key]):
+                output[key] = re.sub("(FCL *[A-Za-z]{2})", "LCL", output[key])
+            elif re.search(r"(FCL *[A-Za-z]{2})", output[key]):
+                output[key] = re.sub("(FCL *[A-Za-z]{2})", "FCL", output[key])
 
 with open("extraction.json", "w") as f:
     json = json.dumps([output], indent=4, sort_keys=True)
