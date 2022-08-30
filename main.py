@@ -14,13 +14,12 @@ images[0].save("processImages/BOL.jpg", "JPEG")
 for jpg_file in glob.glob(r'processImages/BOL.jpg'):
     remove_lines(jpg_file, r'processImages/')
 
-# PREPROCESSING
+## PREPROCESSING
 image = cv2.imread(r"processImages/BOL.jpg")
 base_image = image.copy()
 # GRAY
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 cv2.imwrite("processImages/BOL_gray.png", gray)
-
 # BLUR
 blur = cv2.GaussianBlur(gray, (7, 7), 0)
 cv2.imwrite("processImages/BOL_blur.png", blur)
@@ -39,8 +38,6 @@ cv2.imwrite("processImages/BOL_dilate.png", dilate)
 cnts = cv2.findContours(dilate, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 cnts = cnts[0] if len(cnts) == 2 else cnts[1]
 cnts = sorted(cnts, key=lambda z: cv2.boundingRect(z)[0])
-i = 0
-texts = []
 
 regex = {
     "seller": re.compile(r"Seller.*\n([\s\S]+)"),
@@ -58,17 +55,16 @@ regex = {
     "hbl_scac": re.compile(r"SCAC.*\n([A-Z]{4}) [A-Z]{4}"),
     "type_of_movement": re.compile(r"(FCL *[A-Za-z]+|LCL *[A-Za-z]+)"),
 }
-
+texts = []
 for c in cnts:
     x, y, w, h = cv2.boundingRect(c)
     if h > 100:
         roi = base_image[y:y + h, x:x + w]
         cv2.rectangle(image, (x, y), (x + w, y + h), (36, 255, 12), 5)
-        i += 1
         ocr = pytesseract.image_to_string(roi)
         ocr = "".join([s for s in ocr.strip().splitlines(True) if s.strip()])
         texts.append(ocr)
-
+        
 cv2.imwrite("processImages/BOL_Bbox.png", image)
 
 output = {}
