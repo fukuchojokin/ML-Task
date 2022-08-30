@@ -55,6 +55,7 @@ regex = {
     "hbl_scac": re.compile(r"SCAC.*\n([A-Z]{4}) [A-Z]{4}"),
     "type_of_movement": re.compile(r"(FCL *[A-Za-z]+|LCL *[A-Za-z]+)"),
 }
+
 texts = []
 for c in cnts:
     x, y, w, h = cv2.boundingRect(c)
