@@ -1,5 +1,5 @@
-import json
 import re
+import json
 from createROIs import createROIs
 
 regex = {
@@ -19,21 +19,10 @@ regex = {
     "voyage_num": re.compile(r"\b([A-Z0-9]{5})\b *\n*ETA of POD"),
 }
 
-
 file_path = 'Sample.pdf'
-
-# Receive filepath from user
-# try:
-#     file_path = sys.argv[1].replace('"', '')
-#     texts = createROIs(file_path)
-# except IndexError:
-#     file_path = input("Enter path to pdf file: ")
-#     texts = createROIs(file_path)
-
 texts = createROIs(file_path)
 
 output = {}
-
 for text in texts:
     for key in regex:
         match = re.findall(regex[key], text)

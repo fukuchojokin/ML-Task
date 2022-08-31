@@ -13,3 +13,4 @@
 ## Procedure to run
 - Run the main.py file from console such as `python main.py`
 - Output is displayed in the console and written in a json file named "extraction.json"
+- The images used for processing are stored in the `processImages` folder
