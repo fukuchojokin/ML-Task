@@ -1,5 +1,6 @@
 import json
 import re
+
 from createROIs import createROIs
 
 regex = {
@@ -27,7 +28,7 @@ for text in texts:
         match = re.findall(regex[key], text)
         if len(match) > 0:
             output[key] = str(match.pop()).replace("\n", " ")
-            output[key] = re.sub("[^A-Za-z0-9.,\/\\\n ]", "", output[key])
+            output[key] = re.sub("[^A-Za-z0-9.,/\n ]", "", output[key])
             if re.search(r"(LCL *[A-Za-z]+)", output[key]):
                 output[key] = re.sub("(FCL *[A-Za-z]+)", "LCL", output[key])
             elif re.search(r"(FCL *[A-Za-z]+)", output[key]):
