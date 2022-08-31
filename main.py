@@ -20,12 +20,17 @@ regex = {
     "voyage_num": re.compile(r"\b([A-Z0-9]{5})\b *\n*ETA of POD"),
 }
 
-try:
-    file_path = sys.argv[1].replace('"', '')
-    texts = createROIs(file_path)
-except IndexError:
-    file_path = input("Enter path to pdf file: ")
-    texts = createROIs(file_path)
+filepath = 'Sample.pdf'
+
+# Receive filepath from user
+# try:
+#     file_path = sys.argv[1].replace('"', '')
+#     texts = createROIs(file_path)
+# except IndexError:
+#     file_path = input("Enter path to pdf file: ")
+#     texts = createROIs(file_path)
+
+texts = createROIs(filepath)
 
 output = {}
 
